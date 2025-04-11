@@ -7,6 +7,7 @@ import java.util.List;
 public interface DepartmentService {
     Department saveDepartment(Department department);
     List<Department> fetchDepartmentList();
+    Department fetchDepartmentById(Long departmentId);
     Department updateDepartment(Department department,
                                 Long departmentId);
     void deleteDepartmentByID(Long departmentId);
