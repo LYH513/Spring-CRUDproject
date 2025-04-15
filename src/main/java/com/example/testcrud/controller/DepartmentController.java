@@ -19,7 +19,7 @@ public class DepartmentController {
 
     @PostMapping("/departments")
     public DefaultDto.ResDto saveDepartment(
-            @RequestBody DepartmentDto.CreateDepartment department) {
+            @RequestBody DepartmentDto.CreateReq department) {
         // @Valid : 입력된 데이터(객체)에 대해 유효성 검사를 수행하는 어노테이션
         System.out.println("POST 요청 들어옴");
         return departmentService.saveDepartment(department);
