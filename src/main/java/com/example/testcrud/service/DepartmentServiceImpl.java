@@ -3,6 +3,7 @@ package com.example.testcrud.service;
 import com.example.testcrud.dto.DefaultDto;
 import com.example.testcrud.dto.DepartmentDto;
 import com.example.testcrud.entity.Department;
+import com.example.testcrud.mapper.DepartmentMapper;
 import com.example.testcrud.repository.DepartmentRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,11 @@ import java.util.Objects;
 public class DepartmentServiceImpl implements DepartmentService {
 
     final DepartmentRepository departmentRepository;
+    final DepartmentMapper departmentMapper;
 
-    public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
+    public DepartmentServiceImpl(DepartmentRepository departmentRepository, DepartmentMapper departmentMapper) {
         this.departmentRepository = departmentRepository;
+        this.departmentMapper = departmentMapper;
     }
 
     @Override
@@ -26,9 +29,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<DepartmentDto.DetailResDto> fetchDepartmentList(){
-        List<Department> list = (List<Department>) departmentRepository.findAll(); // 1. 전체 부서 엔티티 조회
+        List<DepartmentDto.DetailResDto> list = departmentMapper.fetchDepartmentList();
         List<DepartmentDto.DetailResDto> dtoList = new ArrayList<>();
-        for(Department each : list){
+        for(DepartmentDto.DetailResDto each : list){
             dtoList.add(fetchDepartmentById(each.getDepartmentId()));
         }
         return dtoList;
@@ -36,15 +39,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public DepartmentDto.DetailResDto fetchDepartmentById(Long departmentId){
-        Department department = departmentRepository.findById(departmentId).orElse(null);
-        DepartmentDto.DetailResDto detailResDto = DepartmentDto.DetailResDto.builder()
-                .departmentId(department.getDepartmentId())
-                .departmentCode(department.getDepartmentCode())
-                .departmentName(department.getDepartmentName())
-                .departmentAddress(department.getDepartmentAddress())
-                .build();
-
-        return detailResDto;
+        DepartmentDto.DetailResDto department = departmentMapper.fetchDepartmentById(departmentId);
+        return department;
     }
 
     @Override
