@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 public class DepartmentDto {
 
     @Getter @Setter @Builder @NoArgsConstructor @AllArgsConstructor
-    public static class CreateDepartment {
+    public static class CreateReq {
         String departmentName;
         String departmentAddress;
         String departmentCode;

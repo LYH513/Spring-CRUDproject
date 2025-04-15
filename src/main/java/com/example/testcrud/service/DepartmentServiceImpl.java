@@ -23,7 +23,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public DefaultDto.ResDto saveDepartment(DepartmentDto.CreateDepartment department){
+    public DefaultDto.ResDto saveDepartment(DepartmentDto.CreateReq department){
         return departmentRepository.save(department.toEntity()).toCreateResDto();
     }
 

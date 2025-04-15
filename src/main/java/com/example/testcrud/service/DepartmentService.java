@@ -7,7 +7,7 @@ import com.example.testcrud.entity.Department;
 import java.util.List;
 
 public interface DepartmentService {
-    DefaultDto.ResDto saveDepartment(DepartmentDto.CreateDepartment department);
+    DefaultDto.ResDto saveDepartment(DepartmentDto.CreateReq department);
     List<DepartmentDto.DetailResDto> fetchDepartmentList();
     DepartmentDto.DetailResDto fetchDepartmentById(Long departmentId);
     void updateDepartment(DepartmentDto.UpdateReqDto department,
